@@ -1,5 +1,1 @@
-CONTIKI_PROJECT = energy-sec
-all: $(CONTIKI_PROJECT)
-
-CONTIKI = ../..
-include $(CONTIKI)/Makefile.include
+include ../Makefile.simulation-test

@@ -1,22 +1,22 @@
-A Contiki-NG module that periodically prints energest times.
-Estimates energy consumption through power estimation timers.
-Periodically communicates with other nodes through UDP.
+This project lives in the contiki test directory: contiki-ng/tests/21-energy-security/
 
-This example runs a full IPv6 stack with 6LoWPAN and RPL.
-It is possible, for example to ping such a node:
+The project contains two tests:
+* 01-base-udp-network.csc
+* 02-dtls-udp-network.csc
 
-```
-make TARGET=native && sudo ./hello-world.native
-```
+00-example-topology.csc is just a simple hello-world example.
 
-Look for the node's global IPv6, e.g.:
-```
-[INFO: Native    ] Added global IPv6 address fd00::302:304:506:708
-```
+They perform the same experiment with the same measurements, except one runs with the security overhead of DTLS v1.2 and the other without.
 
-And ping it (over the tun interface):
-```
-$ ping6 fd00::302:304:506:708
-PING fd00::302:304:506:708(fd00::302:304:506:708) 56 data bytes
-64 bytes from fd00::302:304:506:708: icmp_seq=1 ttl=64 time=0.289 ms
-```
+Simulations are manually created on Cooja through the contiki-ng container and the configuration is saved to a .csc file. A .csc is essentially an XLM file with all of the mote configurations such as device type, position, etc. It also contains other configurations for the network environment such as transmission range.
+
+# Usage
+To run a single test:
+$ cd tests/21-energy-security
+$ make 01-base-udp-network.testlog
+Running test 01-base-udp-network with random Seed 1.................... OK
+
+To run a whole experiment (100 simulations):
+$ sh run.sh dtls
+Running 02-dtls-udp-network.csc
+Simulation 1 in progress
